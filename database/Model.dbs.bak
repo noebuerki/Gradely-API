@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Gradely" id="Project-2142" database="MySql" >
+	<schema name="gradely" >
+		<table name="grade" prior="tbl" >
+			<column name="id" type="int" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="user_id" type="int" jt="4" mandatory="y" />
+			<column name="semester_id" type="int" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="value" type="double" jt="8" mandatory="y" />
+			<column name="weight" type="double" jt="8" mandatory="y" />
+			<index name="pk_grade_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="grade_semester" to_schema="gradely" to_table="subject-semester" delete_action="cascade" update_action="cascade" >
+				<fk_column name="semester_id" pk="id" />
+			</fk>
+			<fk name="grade_user" to_schema="gradely" to_table="user" delete_action="cascade" update_action="cascade" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="school" prior="tbl" >
+			<column name="id" type="int" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="user_id" type="int" jt="4" mandatory="y" />
+			<column name="semester" type="int" jt="4" mandatory="y" />
+			<index name="pk_school_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="school_user" to_schema="gradely" to_table="user" delete_action="cascade" update_action="cascade" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="subject" prior="tbl" >
+			<column name="id" type="int" jt="4" mandatory="y" />
+			<column name="name" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="school_id" type="int" jt="4" mandatory="y" />
+			<index name="pk_subject_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="subject_school" to_schema="gradely" to_table="school" delete_action="cascade" update_action="cascade" >
+				<fk_column name="school_id" pk="id" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="subject-semester" prior="tbl" >
+			<column name="id" type="int" jt="4" mandatory="y" />
+			<column name="subject_id" type="int" jt="4" mandatory="y" />
+			<column name="semester" type="int" jt="4" mandatory="y" />
+			<index name="pk_subject-semester_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unique-subject-semester" unique="UNIQUE_KEY" >
+				<column name="subject_id" />
+				<column name="semester" />
+			</index>
+			<fk name="fk_subject-semester_school" to_schema="gradely" to_table="subject" >
+				<fk_column name="subject_id" pk="id" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="user" prior="tbl" >
+			<column name="id" type="int" jt="4" mandatory="y" />
+			<column name="username" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="email" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="password" type="varchar" length="255" jt="12" mandatory="y" />
+			<column name="admin" type="boolean" jt="16" mandatory="y" >
+				<defo><![CDATA[false]]></defo>
+			</column>
+			<index name="pk_tbl_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-252b" show_relation="columns" >
+		<entity schema="gradely" name="grade" color="C1D8EE" x="336" y="240" />
+		<entity schema="gradely" name="school" color="C1D8EE" x="352" y="48" />
+		<entity schema="gradely" name="subject" color="C1D8EE" x="640" y="48" />
+		<entity schema="gradely" name="subject-semester" color="C1D8EE" x="624" y="224" />
+		<entity schema="gradely" name="user" color="C1D8EE" x="48" y="48" />
+		<callout x="1040" y="576" pointer="Round" >
+			<comment><![CDATA[ b]]></comment>
+		</callout>
+	</layout>
+</project>
