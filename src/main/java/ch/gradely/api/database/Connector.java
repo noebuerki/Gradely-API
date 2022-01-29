@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class Connector {
-	private static final String DATABASE_URL = "jdbc:mysql://10.10.3.3/gradely";
-	private static final String USERNAME = "app";
-	private static final String PASSWORD = "app";
+	private static final String DATABASE_URL = "jdbc:mysql://XXX.XXX.XXX.XXX/gradely";
+	private static final String USERNAME = "XXX";
+	private static final String PASSWORD = "XXX";
 	private static final String MAX_POOL = "250";
 
 	private Connection connection;

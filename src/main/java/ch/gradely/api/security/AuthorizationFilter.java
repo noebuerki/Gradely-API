@@ -22,7 +22,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
 	private static final String HEADER = "Token";
 	private static final String PREFIX = "Bearer ";
-	private static final String SECRET = "-8IU2wt^y|j;~PBe)nTKY7CUeXYyx4p20lzEnQEYE59>65FaFqQnZ$4rHpeo*>n";
+	private static final String SECRET = "XXX";
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
